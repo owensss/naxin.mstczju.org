@@ -3,6 +3,41 @@
 var toggleShow = function(checked, id) {
 	checked ? $("#"+id).show() : $("#"+id).hide();
 }
+
+// html related
+var getChecked = function(group_id) {
+	return $('#form_'+group_id).prop("checked");
+}
+
+// html related
+var toggleChange = function() {
+	var groups = [
+		"tg", "og", "cg", "pg"
+	]
+
+	var count = 0;
+
+	for (var i = 0 ; i < groups.length; ++i)
+		count += getChecked(groups[i]);
+
+	var no_more = count >= 2 ? 1 : 0;
+
+	if (no_more) {
+		for (var i = 0 ; i < groups.length; ++i) {
+			if (! getChecked(groups[i])) $("#form_"+groups[i]).attr("disabled", true);
+		}
+	} else {
+		for (var i = 0 ; i < groups.length; ++i) {
+			$("#form_"+groups[i]).removeAttr("disabled");
+		}
+	}
+}
+
+var toggleCheck = function(checked, id) {
+	toggleShow(checked, id);
+	toggleChange();
+}
+
 </script>
 
 <%= form_for(@form, :validate => true) do |f| %>
@@ -56,26 +91,26 @@ var toggleShow = function(checked, id) {
     <br>或者，前往 <%= link_to 'CC98 MSTC 版面', 'http://www.cc98.org/list.asp?boardid=60', target: '_blank' %> 中 <%= link_to '纳新答疑专楼', 'http://www.cc98.org/dispbbs.asp?boardID=60&ID=2316283', target: '_blank' %> 发贴询问
   </span></p>
   <div class="field">
-    <%= f.check_box :tg, :onchange => 'toggleShow(this.checked, "tg_field")' %>
+    <%= f.check_box :tg, :class => "group_check", :onchange => 'toggleCheck(this.checked, "tg_field")' %>
     <%= f.label :tg, class: 'group_label' %>
     <br/>
     <span class='tip'>主要负责俱乐部的技术活动，如活动主讲人、参与 GIP 活动、代码编写与维护、参与微软的编程实践项目等</span>
     <br><span class='tip'>注意：MSTC 绝大部分活动是所有成员都可以参与的，在任何 Group 都能接触到 MSTC 所有成员及资源，只要有热心就可以收获好朋友。如果在技术上一般，建议选择其他 Group。当然，Technology Group 对不同年级的学生有不同的要求。</span>
   </div>
   <div class="field">
-    <%= f.check_box :og, :onclick => 'toggleShow(this.checked, "og_field")'%>
+    <%= f.check_box :og, :class => "group_check", :onclick => 'toggleCheck(this.checked, "og_field")'%>
     <%= f.label :og, class: 'group_label' %>
     <br/>
     <span class='tip'>主要负责俱乐部的日常运作事务，如活动总结、财务以及和微软亚洲研究院的沟通等</span>
   </div>
   <div class="field">
-    <%= f.check_box :cg, :onclick => 'toggleShow(this.checked, "cg_field")' %>
+    <%= f.check_box :cg, :class => "group_check", :onclick => 'toggleCheck(this.checked, "cg_field")' %>
     <%= f.label :cg, class: 'group_label' %>
     <br/>
     <span class='tip'>主要负责俱乐部内的文化活动，如组织俱乐部内的吃喝玩乐、POM 活动等</span>
   </div>
   <div class="field">
-    <%= f.check_box :pg, :onclick => 'toggleShow(this.checked, "pg_field")'%>
+    <%= f.check_box :pg, :class => "group_check", :onclick => 'toggleCheck(this.checked, "pg_field")'%>
     <%= f.label :pg, class: 'group_label' %> 
     <br/>
     <span class='tip'>主要负责俱乐部的宣传，如海报、传单、刊物的制作等</span>
@@ -152,10 +187,11 @@ var toggleShow = function(checked, id) {
     <%= f.submit '确认提交' %>
   </div>
   <script>
-    toggleShow(<%= @form.tg %>, "tg_field");
-    toggleShow(<%= @form.cg %>, "cg_field");
-    toggleShow(<%= @form.og %>, "og_field");
-    toggleShow(<%= @form.pg %>, "pg_field");
+    toggleShow($("#form[tg]").value, "tg_field");
+    toggleShow($("#form[og]").value, "og_field");
+    toggleShow($("#form[pg]").value, "pg_field");
+    toggleShow($("#form[cg]").value, "cg_field");
+	toggleChange();
   </script>
 
 <% end %>
