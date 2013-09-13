@@ -3,10 +3,6 @@
 var toggleShow = function(checked, id) {
 	checked ? $("#"+id).show() : $("#"+id).hide();
 }
-
-var getVar = function() {
-	console.log(<%= :tg ? 1 : 0 %>)
-}
 </script>
 
 <%= form_for(@form, :validate => true) do |f| %>
@@ -88,7 +84,7 @@ var getVar = function() {
   <div class="field">
       <span class='tip'>以下内容请<strong>尽可能详细填写</strong>，以便让我们在面试前更好的了解你！</span>
   </div>
-  <div id="tg_field" style="display:<%= :tg ? "block" : "none" %>"><%= f.label :tg_q %>
+  <div id="tg_field"><%= f.label :tg_q %>
     <div class="field">
       <div><%= f.label :tg_q1 %></div>
       <%= f.text_area :tg_q1 %>
@@ -107,7 +103,7 @@ var getVar = function() {
     </div>
     <hr />
   </div>
-  <div id="pg_field">
+  <div id="pg_field"><%= f.label :pg_q %>
     <div class="field">
       <div><%= t 'activerecord.attributes.form.pg_q1_html' %></div>
       <%= f.text_area :pg_q1 %>
@@ -122,7 +118,7 @@ var getVar = function() {
     </div>
     <hr />
   </div>
-  <div id="og_field">
+  <div id="og_field"><%= f.label :og_q %>
     <div class="field">
       <div><%= f.label :og_q1 %></div>
       <%= f.text_area :og_q1 %>
@@ -137,7 +133,7 @@ var getVar = function() {
     </div>
     <hr />
   </div>
-  <div id="cg_field">
+  <div id="cg_field"><%= f.label :cg_q %>
     <div class="field">
       <div><%= f.label :cg_q1 %></div>
       <%= f.text_area :cg_q1 %>
