@@ -12,7 +12,13 @@ class Form < ActiveRecord::Base
     define_method("#{g}=") { |x| x != false && (x == true || x.to_i != 0) ? (groups << g) : groups.delete(g) }
   end
 
-  validates_presence_of :name, :tel, :major, :gender, :email, :q1, :q2, :q3, :q4
+  validates_presence_of :name, :tel, :major, :gender, :email
+
+  validates_presence_of :tg_q1, :tg_q2, :tg_q3, :tg_q4, :if => :tg
+  validates_presence_of :og_q1, :og_q2, :og_q3, :if => :og
+  validates_presence_of :pg_q1, :pg_q2, :pg_q3 , :if => :pg
+  validates_presence_of :cg_q1, :cg_q2, :cg_q3, :if => :cg
+
 
   PHONE_REGEX = /\A[0-9\-+ ]+\z/
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -28,8 +34,8 @@ class Form < ActiveRecord::Base
 
   # attr_protected :cookie_hash
 
-  attr_accessible :campus, :cg, :comments, :cookie_hash, :created_at, :email, :forum_id, :gender, :id, :major, :name, :og, :pg, :q1, :q2, :q3, :q4, :groups, :tel, :tg, :updated_at, :user_agent, :as => :admin
-  attr_accessible :campus, :cg, :email, :forum_id, :gender, :major, :name, :og, :pg, :q1, :q2, :q3, :q4, :tel, :tg, :groups, :user_agent
+  attr_accessible :campus, :cg, :comments, :cookie_hash, :created_at, :email, :forum_id, :gender, :id, :major, :name, :og, :pg, :groups, :tel, :tg, :updated_at, :tg_q1, :tg_q2, :tg_q3, :tg_q4, :pg_q1, :pg_q2, :pg_q3, :og_q1, :og_q2, :og_q3, :cg_q1, :cg_q2, :cg_q3, :user_agent, :as => :admin
+  attr_accessible :campus, :cg, :email, :forum_id, :gender, :major, :name, :og, :pg, :tg_q1, :tg_q2, :tg_q3, :tg_q4, :pg_q1, :pg_q2, :pg_q3, :og_q1, :og_q2, :og_q3, :cg_q1, :cg_q2, :cg_q3, :tel, :tg, :groups, :user_agent
 
   def campus_sym
     [nil, :zjg, :yq][campus]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923132833) do
+ActiveRecord::Schema.define(:version => 20130911061756) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -39,10 +39,6 @@ ActiveRecord::Schema.define(:version => 20120923132833) do
     t.integer  "campus"
     t.string   "forum_id"
     t.integer  "groups"
-    t.text     "q1"
-    t.text     "q2"
-    t.text     "q3"
-    t.text     "q4"
     t.string   "cookie_hash"
     t.text     "comments"
     t.integer  "state"
@@ -50,6 +46,19 @@ ActiveRecord::Schema.define(:version => 20120923132833) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.string   "user_agent"
+    t.text     "tg_q1"
+    t.text     "tg_q2"
+    t.text     "tg_q3"
+    t.text     "tg_q4"
+    t.text     "og_q1"
+    t.text     "og_q2"
+    t.text     "og_q3"
+    t.text     "pg_q1"
+    t.text     "pg_q2"
+    t.text     "pg_q3"
+    t.text     "cg_q1"
+    t.text     "cg_q2"
+    t.text     "cg_q3"
   end
 
   add_index "forms", ["spam", "id"], :name => "index_forms_on_spam_and_id"
