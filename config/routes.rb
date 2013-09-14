@@ -15,6 +15,8 @@ NaxinMstczjuOrg::Application.routes.draw do
 
   match '/login' => redirect('/admin')
   match '/about', :to => 'pages#about'
+  match '/play', :to => 'play#index'
+  match 'play/entry', :to => 'play#entry'
   # match '/print', :to => 'forms#print'
 
 end

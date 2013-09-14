@@ -42,7 +42,7 @@
             span.ua = form.user_agent
   br
   br
-  - { 'TG. 码农素质' => form.tg_q1, 'TG. MS 收购 Nokia' => form.tg_q2, 'TG. 小课堂主讲' => form.tg_q3, 'TG. php 最牛逼' => form.tg_q4, 'OG. 日常工作' => form.og_q1, 'OG. 适合 og 的性格' => form.og_q2, 'OG. og 社团中位置，与其他Group关系' => form.og_q3, 'PG. PS, Illustrator,  Indesign, After Effect, Corel' => form.pg_q1, 'PG. 能否抽出时间学软件，哪些？' => form.pg_q2, 'PG. 作品' => form.pg_q3, 'CG. 贡献时间，带来什么' => form.cg_q1, 'CG. MSTC 印象，加入理由' => form.cg_q2, 'CG. 破冰点子' => form.cg_q3, 'CG. 注释' => form.comments }.each do |k, v| 
+  - { 'TG. 码农素质' => form.tg_q1, 'TG. 对大神看法, 差距优势, 弥补' => form.tg_q2, 'TG. 小课堂主讲' => form.tg_q3, 'TG. 作品' => form.tg_q4, 'OG. 日常工作' => form.og_q1, 'OG. 适合 og 的性格' => form.og_q2, 'OG. og 社团中位置，与其他Group关系' => form.og_q3, 'PG. PS, Illustrator,  Indesign, After Effect, Corel' => form.pg_q1, 'PG. 能否抽出时间学软件，哪些？' => form.pg_q2, 'PG. 作品' => form.pg_q3, 'CG. 贡献时间，带来什么' => form.cg_q1, 'CG. MSTC 印象，加入理由' => form.cg_q2, 'CG. 破冰点子' => form.cg_q3, '注释' => form.comments }.each do |k, v| 
     - if v.present?
       - if not print
         = k
