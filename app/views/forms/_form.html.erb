@@ -187,10 +187,10 @@ var toggleCheck = function(checked, id) {
     <%= f.submit '确认提交' %>
   </div>
   <script>
-    toggleShow($("#form[tg]").value, "tg_field");
-    toggleShow($("#form[og]").value, "og_field");
-    toggleShow($("#form[pg]").value, "pg_field");
-    toggleShow($("#form[cg]").value, "cg_field");
+    toggleShow(<%= @form.tg %>, "tg_field");
+    toggleShow(<%= @form.og %>, "og_field");
+    toggleShow(<%= @form.pg %>, "pg_field");
+    toggleShow(<%= @form.cg %>, "cg_field");
 	toggleChange();
   </script>
 
